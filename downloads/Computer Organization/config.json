@@ -1,0 +1,45 @@
+{
+  "name": "Computer Organization",
+  "links": {
+    "subject_link": "http://nptel.ac.in/courses/106106092/",
+    "sample_download_start": "http://npteldownloads.iitm.ac.in/downloads_mp4/106106092/lec01.mp4",
+    "sample_download_end": "http://npteldownloads.iitm.ac.in/downloads_mp4/106106092/lec33.mp4",
+    "download_link": "http://npteldownloads.iitm.ac.in/downloads_mp4/106106092/lec{0}.mp4"
+  },
+  "download_titles": [
+    "Introduction To Computing",
+    "Introduction To System - Software",
+    "Introduction To System - Hardware",
+    "Processor Activities",
+    "Processor As a State Machine",
+    "Data Path Architecture",
+    "Data Path Controller - Micro Programmed",
+    "State Machine Design",
+    "Controller Design- Microprogrammed and Hardwired",
+    "Controller Design (Contd)",
+    "Typical Micro Instructions",
+    "Addressing Modes",
+    "Problem Exercise",
+    "Problem Exercise",
+    "Introduction to memory system",
+    "CPU - Memory Interaction",
+    "Cache Organization",
+    "Cache Organization",
+    "Virtual Memory",
+    "Virtual Memory",
+    "Performance Calculation",
+    "Segmentation",
+    "Address Translation and Protection",
+    "Programmed IO",
+    "Interrupt Driven IO",
+    "DMA - Direct Memory Access",
+    "Device Service Routines",
+    "Evolution Of IO",
+    "IO Devices",
+    "IO Devices - Contd",
+    "Buses",
+    "Buses Contd",
+    "Conclusion"
+  ]
+}
+

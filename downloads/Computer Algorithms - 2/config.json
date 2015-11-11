@@ -1,0 +1,47 @@
+{
+  "name": "Computer Algorithms - 2",
+  "links": {
+    "subject_link": "http://nptel.ac.in/courses/106104019/",
+    "sample_download_start": "http://npteldownloads.iitm.ac.in/downloads_mp4/106104019/mod01lec01.mp4",
+    "sample_download_end": "http://npteldownloads.iitm.ac.in/downloads_mp4/106104019/mod01lec35.mp4",
+    "download_link": "http://npteldownloads.iitm.ac.in/downloads_mp4/106104019/mod01lec{0}.mp4"
+  },
+  "download_titles": [
+    "Graph_Basics",
+    "Breadth_First_Search",
+    "Dijkstra_Algo",
+    "All Pair Shortest Path",
+    "Matriods",
+    "Minimum Spanning Tree",
+    "Edmond's Matching Algo I",
+    "Edmond's Matching Algo II",
+    "Flow Networks",
+    "Ford Fulkerson Method",
+    "Edmond Karp Algo",
+    "Matrix Inversion",
+    "Matrix Decomposition",
+    "Knuth Morris Pratt Algo",
+    "Rabin Karp Algo",
+    "NFA Simulation",
+    "Integer-Polynomial OpsI",
+    "Integer-Polynomial OpsII",
+    "Integer-Polynomial OpsIII",
+    "Chinese RemainderI",
+    "Chinese RemainderII",
+    "Chinese RemainderIII",
+    "Discrete Fourier TransformI",
+    "Discrete Fourier TransformII",
+    "Discrete Fourier TransformIII",
+    "Schonhage Strassen Algo",
+    "Linear ProgrammingI",
+    "Linear ProgrammingII",
+    "GeometryI",
+    "GeometryII",
+    "GeometryIII",
+    "Approximation AlgoI",
+    "Approximation AlgoII",
+    "Approximation AlgoIII",
+    "General - Dynamic Programming"
+  ]
+}
+

@@ -1,0 +1,46 @@
+{
+  "name": "Design and Analysis of Algorithms",
+  "links": {
+    "subject_link": "http://nptel.ac.in/courses/106101060/",
+    "sample_download_start": "http://npteldownloads.iitm.ac.in/downloads_mp4/106101060/lec01.mp4",
+    "sample_download_end": "http://npteldownloads.iitm.ac.in/downloads_mp4/106101060/lec34.mp4",
+    "download_link": "http://npteldownloads.iitm.ac.in/downloads_mp4/106101060/lec{0}.mp4"
+  },
+  "download_titles": [
+    "Overview of the course",
+    "Framework for Algorithms Analysis",
+    "Algorithms Analysis Framework II",
+    "Asymptotic Notations",
+    "Algorithm Design Techniques : Basics",
+    "Divide And Conquer I",
+    "Divide And Conquer II Median Finding",
+    "Divide And Conquer III Surfing Lower Bounds",
+    "Divide And Conquer IV Closest Pair",
+    "Greedy Algorithms I",
+    "Greedy Algorithms II",
+    "Greedy Algorithms III",
+    "Greedy Algorithms IV",
+    "Pattern Matching I",
+    "Pattern Matching II",
+    "Combinational Search and Optimization I",
+    "Combinational Search and Optimization II",
+    "Dynamic Programming",
+    "Longest Common Subsequences",
+    "Matrix Chain Multiplication",
+    "Scheduling with Startup and Holding Costs",
+    "Average case Analysis of Quicksort",
+    "Bipartite Maximum Matching",
+    "Lower Bounds for Sorting",
+    "Element Distinctness Lower Bounds",
+    "NP-Completeness-I-Motivation",
+    "NP-Completeness-II",
+    "NP-Completeness-III",
+    "NP-Completeness-IV",
+    "NP-Completeness-V",
+    "NP-Completeness-VI",
+    "Approximation Algorithms",
+    "Approximation Algorithms",
+    "Approximation Algorithms for NP"
+  ]
+}
+

@@ -1,0 +1,27 @@
+{
+  "name": "nptel-miner",
+  "version": "0.1.0",
+  "description": "nodejs miner for nptel video courses",
+  "keywords": [
+    "nodejs",
+    "nptel",
+    "video",
+    "course"
+  ],
+  "main": "./nptel",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sohailalam2/nptel-miner.git"
+  },
+  "scripts": {
+    "start": "node nptel"
+  },
+  "dependencies": {
+  },
+  "contributors": [
+    {
+      "name": "Sohail Alam"
+    }
+  ]
+}

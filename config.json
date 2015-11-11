@@ -1,0 +1,8 @@
+{
+  "max_parallel_downloads": 2,
+  "download_path": "./downloads",
+  "downloads": [
+    "Artificial Intelligence",
+    "Computer Algorithms - 2"
+  ]
+}

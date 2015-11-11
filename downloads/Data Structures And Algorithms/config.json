@@ -1,0 +1,48 @@
+{
+  "name": "Data Structures And algorithms",
+  "links": {
+    "subject_link": "http://nptel.ac.in/courses/106102064/",
+    "sample_download_start": "http://npteldownloads.iitm.ac.in/downloads_mp4/106102064/lec01.mp4",
+    "sample_download_end": "http://npteldownloads.iitm.ac.in/downloads_mp4/106102064/lec36.mp4",
+    "download_link": "http://npteldownloads.iitm.ac.in/downloads_mp4/106102064/lec{0}.mp4"
+  },
+  "download_titles": [
+    "Introduction to Data Structures and Algorithms",
+    "Stacks",
+    "Queues and Linked Lists",
+    "Dictionaries",
+    "Hashing",
+    "Trees",
+    "Tree Walks / Traversals",
+    "Ordered Dictionaries",
+    "Deletion",
+    "Quick Sort",
+    "AVL Trees",
+    "AVL Trees",
+    "Trees",
+    "Red Black Trees",
+    "Insertion in Red Black Trees",
+    "Disk Based Data Structures",
+    "Case Study: Searching for Patterns",
+    "Tries",
+    "Data Compression",
+    "Priority Queues",
+    "Binary Heaps",
+    "Why Sorting",
+    "More Sorting",
+    "Graphs",
+    "Data Structures for Graphs",
+    "Two Applications of Breadth First Search",
+    "Depth First Search",
+    "Applications of DFS",
+    "DFS in Directed Graphs",
+    "Applications of DFS in Directed Graphs",
+    "Minimum Spanning Trees",
+    "The Union",
+    "Prims Algorithm for Minimum Spanning Trees",
+    "Single Source Shortest Paths",
+    "Correctness of Dijkstras Algorithm",
+    "Single Source Shortest Paths"
+  ]
+}
+

@@ -11,7 +11,7 @@ var http = require('http')
 // global variables
 var COUNT = 0 // the current download count
     , DOWNLOAD_LIST = [] // list of all downloads
-    , WAIT_COUNTER = 0 // the wait counter for http HEAD responses
+    , WAIT_FOR_RESPONSE = 0
     ;
 
 /**
@@ -46,13 +46,47 @@ function normalizeFilename(filename) {
     return filename;
 }
 
+function downloadSize(downloadUrl, callback) {
+    setTimeout(function () {
+        // parse the downloadUrl string into url object
+        var url = URL.parse(downloadUrl);
+        // make a http HEAD request to check the download file size
+        http.request({
+            method: 'HEAD'
+            , host: url.host
+            , port: url.port
+            , path: url.path
+        }, function (res) {
+            if (res && res.headers) {
+                var dSize = res.headers['content-length'];
+                if (dSize)
+                    dSize = parseInt(dSize);
+                else
+                    dSize = 0;
+                callback(dSize);
+            }
+        }).end();
+    }, 500);
+}
+
 // helper function to download the video file
 function download(data) {
     if (!data || !data.url || !data.path) {
         console.log('>>>> All Downloads Completed');
         return;
     }
-    console.log('>> Downloading %s - %s', data.filename, data.url);
+
+    var dSize = data.size, dSizeUnit = 'bytes';
+    if (dSize > 1024) {
+        dSize = dSize / 1024;
+        dSizeUnit = 'KB';
+    }
+    if (dSize > 1024) {
+        dSize = dSize / 1024;
+        dSizeUnit = 'MB';
+    }
+
+    console.log('>> Downloading %s - (%s %s)', data.filename, String(Math.ceil(dSize)), dSizeUnit);
     data.startTime = new Date().getTime();
     http
         .get(data.url, function (response) {
@@ -86,10 +120,11 @@ var waitTimer; // the timer interval id
 // all http HEAD responses are back
 function startAllDownloads() {
     clearInterval(waitTimer);
-    if (WAIT_COUNTER > 0) {
+    if (WAIT_FOR_RESPONSE > 0) {
+        console.log('>> Waiting for response for download size...');
         waitTimer = setInterval(function () {
             startAllDownloads();
-        }, 2000);
+        }, 5000);
     } else {
         console.log('>> Starting download of %s items', DOWNLOAD_LIST.length);
         // Start the download
@@ -136,47 +171,36 @@ function startAllDownloads() {
             // the filename by which the video will be saved
             downloadFilePath = path.join(downloadPath, downloadFilename);
 
-            // add to download list if not already downloaded
-            if (!fs.existsSync(downloadFilePath)) {
-                DOWNLOAD_LIST.push({
-                    url: downloadUrl,
-                    path: downloadFilePath,
-                    filename: downloadFilename
-                })
-            } else {
-                // increment the wait counter
-                WAIT_COUNTER++;
-                // check file size and if it differs then download the new one
-                var fileStats = fs.statSync(downloadFilePath);
-                var size = 0;
-                if (fileStats) {
-                    size = fileStats.size;
-                }
-                // parse the downloadUrl string into url object
-                var url = URL.parse(downloadUrl);
-                var options = {method: 'HEAD', host: url.host, port: url.port, path: url.path};
-                // make a http HEAD request to check the download file size
-                (function (size, downloadUrl, downloadFilePath, downloadFilename) {
-                    var req = http.request(options, function (res) {
-                            if (res && res.headers) {
-                                var headers = res.headers;
-                                // if the download filesize is not same as the file size then add it to download list
-                                if (size != headers['content-length']) {
-                                    DOWNLOAD_LIST.push({
-                                        url: downloadUrl,
-                                        path: downloadFilePath,
-                                        filename: downloadFilename
-                                    })
-                                }
-                            }
-                            // increment the wait counter
-                            WAIT_COUNTER--;
+            (function (downloadFilePath, downloadUrl, downloadFilename) {
+                WAIT_FOR_RESPONSE++;
+                downloadSize(downloadUrl, function (dSize) {
+                    // add to download list if not already downloaded
+                    if (!fs.existsSync(downloadFilePath)) {
+                        DOWNLOAD_LIST.push({
+                            url: downloadUrl,
+                            path: downloadFilePath,
+                            filename: downloadFilename,
+                            size: dSize
+                        })
+                    } else {
+                        // check file size and if it differs then download the new one
+                        var fileStats = fs.statSync(downloadFilePath);
+                        var size = 0;
+                        if (fileStats) {
+                            size = fileStats.size;
                         }
-                    );
-                    // end the http request
-                    req.end();
-                })(size, downloadUrl, downloadFilePath, downloadFilename);
-            }
+                        if (size != dSize) {
+                            DOWNLOAD_LIST.push({
+                                url: downloadUrl,
+                                path: downloadFilePath,
+                                filename: downloadFilename,
+                                size: dSize
+                            })
+                        }
+                    }
+                    WAIT_FOR_RESPONSE--;
+                });
+            })(downloadFilePath, downloadUrl, downloadFilename);
         }
     }
 

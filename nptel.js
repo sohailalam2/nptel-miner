@@ -89,29 +89,30 @@ function download(data) {
     data.startTime = new Date().getTime();
     http
         .get(data.url, function (response) {
-            response.pipe(fs.createWriteStream(data.path));
-        })
-        .on('close', function () {
-            data.endTime = new Date().getTime();
-            var time = (data.endTime - data.startTime) / 1000;
-            if (time > 120) {
-                console.log('> Download completed :: %s - (%s minutes)', data.filename, String(time / 60))
-            } else {
-                console.log('> Download completed :: %s - (%s seconds)', data.filename, String(time))
-            }
+            response
+                .pipe(fs.createWriteStream(data.path))
+                .on('close', function () {
+                    data.endTime = new Date().getTime();
+                    var time = (data.endTime - data.startTime) / 1000;
+                    if (time > 120) {
+                        console.log('> Download completed :: %s - (%s minutes)', data.filename, String(time / 60))
+                    } else {
+                        console.log('> Download completed :: %s - (%s seconds)', data.filename, String(time))
+                    }
 
-            // download the next file(s)
-            if (config.max_parallel_downloads > 0) {
-                for (var i = 0; i < config.max_parallel_downloads; i++) {
-                    download(DOWNLOAD_LIST.pop());
-                }
-            } else {
-                download(DOWNLOAD_LIST.pop());
-            }
+                    // download the next file(s)
+                    if (config.max_parallel_downloads > 0) {
+                        for (var i = 0; i < config.max_parallel_downloads; i++) {
+                            download(DOWNLOAD_LIST.pop());
+                        }
+                    } else {
+                        download(DOWNLOAD_LIST.pop());
+                    }
+                })
+                .on('error', function (err) {
+                    console.log("Error while download", err);
+                });
         })
-        .on('error', function (err) {
-            console.log("Error while download", err);
-        });
 }
 
 var waitTimer; // the timer interval id

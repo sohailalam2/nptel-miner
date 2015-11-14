@@ -9,8 +9,7 @@ var http = require('http')
     ;
 
 // global variables
-var COUNT = 0 // the current download count
-    , DOWNLOAD_LIST = [] // list of all downloads
+var DOWNLOAD_LIST = [] // list of all downloads
     , WAIT_FOR_RESPONSE = 0
     ;
 
@@ -104,10 +103,10 @@ function download(data) {
             // download the next file(s)
             if (config.max_parallel_downloads > 0) {
                 for (var i = 0; i < config.max_parallel_downloads; i++) {
-                    download(DOWNLOAD_LIST[COUNT++]);
+                    download(DOWNLOAD_LIST.pop());
                 }
             } else {
-                download(DOWNLOAD_LIST[COUNT++]);
+                download(DOWNLOAD_LIST.pop());
             }
         })
         .on('error', function (err) {
@@ -130,10 +129,10 @@ function startAllDownloads() {
         // Start the download
         if (config.max_parallel_downloads > 0) {
             for (var i = 0; i < config.max_parallel_downloads; i++) {
-                download(DOWNLOAD_LIST[i]);
+                download(DOWNLOAD_LIST.pop());
             }
         } else {
-            download(DOWNLOAD_LIST[0]);
+            download(DOWNLOAD_LIST.pop());
         }
     }
 }

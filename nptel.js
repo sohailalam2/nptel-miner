@@ -96,6 +96,7 @@ function download(data) {
                     var time = (data.endTime - data.startTime) / 1000
                         , timeunit = 'seconds';
                     if (time > 120) {
+                        time = time / 60;
                         timeunit = 'minutes'
                     }
                     console.log('>> Download completed :: %s - (%s %s)', data.filename, String(time), timeunit);

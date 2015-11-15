@@ -93,21 +93,15 @@ function download(data) {
                 .pipe(fs.createWriteStream(data.path))
                 .on('close', function () {
                     data.endTime = new Date().getTime();
-                    var time = (data.endTime - data.startTime) / 1000;
+                    var time = (data.endTime - data.startTime) / 1000
+                        , timeunit = 'seconds';
                     if (time > 120) {
-                        console.log('> Download completed :: %s - (%s minutes)', data.filename, String(time / 60))
-                    } else {
-                        console.log('> Download completed :: %s - (%s seconds)', data.filename, String(time))
+                        timeunit = 'minutes'
                     }
+                    console.log('>> Download completed :: %s - (%s %s)', data.filename, String(time), timeunit);
 
-                    // download the next file(s)
-                    if (config.max_parallel_downloads > 0) {
-                        for (var i = 0; i < config.max_parallel_downloads; i++) {
-                            download(DOWNLOAD_LIST.pop());
-                        }
-                    } else {
-                        download(DOWNLOAD_LIST.pop());
-                    }
+                    // download the next file
+                    download(DOWNLOAD_LIST.pop());
                 })
                 .on('error', function (err) {
                     console.log("Error while download", err);
